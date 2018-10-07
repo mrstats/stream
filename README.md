@@ -1,4 +1,4 @@
-# ActStream
+# Stream
 ### News Feed & Activity Stream V0.1
 
 #### How to Make
