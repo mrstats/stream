@@ -1,0 +1,42 @@
+mode: dev
+
+#production
+#pro:
+
+#staging
+#stag:
+
+#dev
+dev:
+  log:
+    level: debug
+
+  queuer:
+    http:
+      addr: 127.0.0.1:1101
+      timeout:
+        read: 16
+        write: 16
+        shutdown: 16
+
+  queue:
+    addr:
+      nsqd: 127.0.0.1:4150
+      nsqadmin: 127.0.0.1:4171
+      nsqlookupd: 127.0.0.1:4160
+    consumer:
+    producer:
+
+  pusher:
+    http:
+      addr: 127.0.0.1:1102
+      timeout:
+        read: 16
+        write: 16
+        shutdown: 16
+    ws:
+      token:
+        title: token
+      timeout:
+        write: 16
+        ping: 64

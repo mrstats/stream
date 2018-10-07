@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>stream</title>
+<style>
+    body {color: lightskyblue; background-color: black; font-size: x-large;}
+    #output {padding: 50px}
+</style>
+<script type="text/javascript">
+window.onload = function () {
+    var token = "feed.user.a";
+
+    let out = document.getElementById('output');
+
+    if (window["WebSocket"]) {
+
+        out.innerHTML = "connecting to WebSocket...";
+
+        let ws = new WebSocket("ws://" + document.location.host + "/ws?token=" + token);
+        ws.onopen = function() {
+            console.log('Connected');
+            out.innerHTML = "connected"
+        };
+        ws.onclose = function () {
+            console.log('Disconnected');
+            out.innerHTML = "disconnected (note: some browsers doesn't allow insecure websocket connections to localhost)"
+        };
+        ws.onmessage = function(evt) {
+            draw(JSON.parse(evt.data))
+        };
+
+        function draw(msg) {
+            // alert(JSON.stringify(msg));
+            out.innerHTML = "| Message: " + JSON.stringify(msg.context) +
+                    "<br>| Token: " + msg.token +
+                    "<br>| ClientID: " + msg.client_id;
+        }
+    } else {
+        out.innerHTML = "<b>Your browser does not support WebSockets Over HTTP.\n Please use Firefox</b>";
+    }
+};
+</script>
+</head>
+<body>
+    <div id="output"></div>
+</body>
+</html>
