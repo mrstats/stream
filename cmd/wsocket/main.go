@@ -69,14 +69,14 @@ func main() {
 	}).Queries("token", "{token}")
 
 	svr := &http.Server{
-		Addr:         cfg.GetString("pusher.http.addr"),
-		ReadTimeout:  time.Second * cfg.GetDuration("pusher.http.timeout.read"),
-		WriteTimeout: time.Second * cfg.GetDuration("pusher.http.timeout.write"),
+		Addr:         cfg.GetString("wsocket.http.addr"),
+		ReadTimeout:  time.Second * cfg.GetDuration("wsocket.http.timeout.read"),
+		WriteTimeout: time.Second * cfg.GetDuration("wsocket.http.timeout.write"),
 		Handler:      r,
 	}
 
 	go onSignal(func() {
-		shutdownTimeout := cfg.GetDuration("pusher.http.timeout.shutdown")
+		shutdownTimeout := cfg.GetDuration("wsocket.http.timeout.shutdown")
 		ctx, cancel := context.WithTimeout(context.Background(), shutdownTimeout*time.Second)
 		defer cancel()
 		// TODO: stop worker

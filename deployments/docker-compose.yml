@@ -1,11 +1,78 @@
-version: '3'
+version: '3.7'
 services:
+  ### stream
+#  stream-queuer:
+#    container_name: stream-queuer
+#    image: stream-queuer
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.queuer
+#      labels:
+#        - stream.queuer
+##    restart: on-failure
+#    ports:
+#      - 1101:1101
+#    volumes:
+#      - ./configs/servers.yml:/app/server.yml:ro
+#    depends_on:
+#      - nsqd
+#
+#  streamwsocket:
+#    container_name: stream-wsocket
+#    image: stream-wsocket
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.wsocket
+#      labels:
+#      - stream.wsocket
+##    restart: on-failure
+#    ports:
+#      - 1102:1102
+#    volumes:
+#     - ./configs/servers.yml:/app/server.yml:ro
+#    depends_on:
+#      - nsqd
+
+#  streamstorage:
+#    container_name: stream-storage
+#    image: stream-storage
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.storage
+#      labels:
+#        - stream.storage
+#    restart: on-failure
+#    ports:
+#     - 1101:1101
+#    volumes:
+#     - ./configs/servers.yml:/app/server.yml:ro
+#    depends_on:
+#     - nsqd
+#     - db
+
+  ### db:
+#  db:
+#    container_name: db
+#    image: mysql
+#    restart: on-failure
+#    ports:
+#     - 3306:3306
+#    volumes:
+#     - mysqldata:/var/lib/mysql
+#    environment:
+#      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+#      MYSQL_DATABASE: devdb
+#      MYSQL_USER: dbuser
+#      MYSQL_PASSWORD: dbpassword
+
+  ### nsq
   nsqlookupd:
     image: nsqio/nsq
     command: /nsqlookupd
     ports:
-    - "4160:4160"
-    - "4161:4161"
+      - "4160:4160"
+      - "4161:4161"
+
   nsqd:
     image: nsqio/nsq
     command: >
@@ -19,6 +86,7 @@ services:
     - "4151:4151"
     volumes:
     - .:/data
+
   nsqadmin:
     image: nsqio/nsq
     command: >
@@ -28,3 +96,11 @@ services:
     - nsqlookupd
     ports:
     - "4171:4171"
+
+###
+#volumes:
+#  mysqldata:
+
+networks:
+  default:
+    name: stream

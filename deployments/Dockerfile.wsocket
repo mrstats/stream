@@ -1,0 +1,14 @@
+FROM alpine
+
+ARG OS=linux
+ARG PORT=1102
+ENV APP=wsocket
+
+LABEL description="stream.$APP"
+
+COPY ./build/$OS/$APP /app/
+COPY ./configs/servers.yml /app/
+
+EXPOSE $PORT
+
+CMD echo /app/${APP}

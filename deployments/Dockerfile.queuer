@@ -1,0 +1,16 @@
+FROM alpine
+
+ARG OS=linux
+ARG PORT=1101
+ENV APP=queuer
+
+LABEL description="stream.$APP"
+
+COPY ./build/$OS/$APP /app/
+COPY ./configs/servers.yml /app/
+
+RUN /bin/ls /app && echo "xxxx"
+
+EXPOSE $PORT
+
+CMD echo /app/${APP}

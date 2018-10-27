@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "0d793fbd-ed89-4841-8f90-fa2a167928c7",
+		"name": "stream",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "REST API Endpoints",
+			"item": [
+				{
+					"name": "Feed",
+					"item": [
+						{
+							"name": "Add an activity",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "a875ec05-46b9-4c31-a91f-bcd16c40e210",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "Postman-stream-api-collection",
+										"description": "Optional"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": "Mandatory; do not change"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"actor\":\"user:a\",\n\t\"verb\":\"payment\",\n\t\"object\":\"payment:102\",\n\t\"to\":[\"notification:b\"]\n}\n"
+								},
+								"url": {
+									"raw": "http://{{API_DOMAIN}}/api/v1.0/feed/{{FEED_SLUG}}/{{FEED_ENTITY_ID}}/?api_key={{API_KEY}}",
+									"protocol": "http",
+									"host": [
+										"{{API_DOMAIN}}"
+									],
+									"path": [
+										"api",
+										"v1.0",
+										"feed",
+										"{{FEED_SLUG}}",
+										"{{FEED_ENTITY_ID}}",
+										""
+									],
+									"query": [
+										{
+											"key": "api_key",
+											"value": "{{API_KEY}}",
+											"description": "Added dynamically from the Environment variables set; do not change"
+										},
+										{
+											"key": "activity_copy_limit",
+											"value": "5",
+											"description": "How many activities should be copied from the target feed",
+											"disabled": true
+										}
+									]
+								},
+								"description": "The Following endpoint can be used to add following relationships from a feed to another target feed.\n\n# Body fields:\n - **target**: The target feed this feed should follow"
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve a feed",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "123bdc11-2ee8-468b-b205-c42a186bff5c",
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "Postman-stream-api-collection",
+										"description": "Optional"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://{{API_DOMAIN}}/api/v1.0/feed/{{FEED_SLUG}}//{{FEED_ENTITY_ID}}/?api_key={{API_KEY}}",
+									"protocol": "http",
+									"host": [
+										"{{API_DOMAIN}}"
+									],
+									"path": [
+										"api",
+										"v1.0",
+										"feed",
+										"{{FEED_SLUG}}",
+										"",
+										"{{FEED_ENTITY_ID}}",
+										""
+									],
+									"query": [
+										{
+											"key": "api_key",
+											"value": "{{API_KEY}}"
+										},
+										{
+											"key": "limit",
+											"value": "{{FEED_LIMIT}}",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "{{FEED_OFFSET}}",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6f9e4df6-f1f6-41e9-b1d3-4b7b596b1b34",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e45c63cb-c4b1-4d93-a646-58b8a0730e53",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "0f0966a2-d8f0-4c86-bd05-254f7ed385d4",
+			"key": "API_DOMAIN",
+			"value": "127.0.0.1:1101",
+			"type": "string"
+		},
+		{
+			"id": "a7c12019-ee0a-415d-bdd5-c4de9d9154a3",
+			"key": "API_SECRET",
+			"value": "secret",
+			"type": "string"
+		},
+		{
+			"id": "e663c7ba-3bc6-4ac2-84cc-861c0b6c466e",
+			"key": "API_KEY",
+			"value": "sandbox",
+			"type": "string"
+		},
+		{
+			"id": "242513ef-4a74-4104-b7c2-f39795cd28dc",
+			"key": "FEED_SLUG",
+			"value": "user",
+			"type": "string"
+		},
+		{
+			"id": "5c820f0e-b0fb-45a7-8be1-3ab369eba213",
+			"key": "FEED_ENTITY_ID",
+			"value": "a",
+			"type": "string"
+		},
+		{
+			"id": "b97d5cb6-b86a-481b-81ef-71c75b9e7dc5",
+			"key": "FEED_ID",
+			"value": "{{FEED_SLUG}}{{FEED_USER_ID}}",
+			"type": "string"
+		},
+		{
+			"id": "f7c68988-8e74-4baf-a629-c19fc3f78f2a",
+			"key": "FEED_LIMIT",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "35967147-5f88-4566-9912-b570ca68b362",
+			"key": "FEED_OFFSET",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "a4c7f1c4-33b1-4943-a485-4b3c2029976f",
+			"key": "TIMELINE_ENTITY_ID",
+			"value": "b",
+			"type": "string"
+		}
+	]
+}

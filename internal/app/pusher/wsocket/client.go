@@ -17,11 +17,11 @@ var (
 	log = logger.GetInstance()
 	cfg = config.GetInstance()
 
-	timeoutWrite = time.Second * cfg.GetDuration("pusher.ws.timeout.write")
-	timeoutPing  = time.Second * cfg.GetDuration("pusher.ws.timeout.ping")
+	timeoutWrite = time.Second * cfg.GetDuration("wsocket.ws.timeout.write")
+	timeoutPing  = time.Second * cfg.GetDuration("wsocket.ws.timeout.ping")
 	timeoutPong  = timeoutPing * 11 / 10
 
-	//tokenTitle = cfg.GetString("pusher.ws.GetToken.title")
+	//tokenTitle = cfg.GetString("wsocket.ws.GetToken.title")
 )
 
 var upgrader = websocket.Upgrader{

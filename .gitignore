@@ -53,7 +53,7 @@ out
 gen
 
 # Build files
-build/
+deployments/build/
 
 # Go mod files
 **/go.sum

@@ -41,6 +41,7 @@ func GetInstance() *Config {
 
 		inst.AddConfigPath(".")
 		inst.AddConfigPath("configs/")
+		inst.AddConfigPath("deployments/configs/")
 		inst.AddConfigPath("/etc/stream/")
 		inst.AddConfigPath("$HOME/.stream")
 
