@@ -2,25 +2,19 @@
 ### News Feed & Activity Stream V0.1
 
 #### How to Make
-Run 
+build apps & run nsq 
 ```sh
 $ make
 ```
 
-and find binaries at ./build/{platform}/{cmd-name}
-  
-To build for specific platform run _make_ as 
+and find binaries at ./deployments/build/{platform}/{cmd-name}.
+To run:
 ```sh
-$ make linux
-$ make darwin
-$ make windows
-```
-or make them all together by
-```sh
-$ make all
+$ ./deployments/build/darwin/queuer
+$ ./deployments/build/darwin/wsocket
 ```
 
-by default it just make Linux version
 
+you can find postman collection at deployments/stream.postman_collection.json
 
 Coded By [Rahi Dehzani](mailto:r.dehzani@gmail.com) At [DigiFilm](http://digifilm.ir) 
