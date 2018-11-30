@@ -41,9 +41,19 @@ dev:
         write: 16
         ping: 64
 
-  storage:
+  fcm:
     http:
       addr: 127.0.0.1:1103
+      timeout:
+        read: 16
+        write: 16
+        shutdown: 16
+    key:
+      server:
+
+  storage:
+    http:
+      addr: 127.0.0.1:1104
       timeout:
         read: 16
         write: 16

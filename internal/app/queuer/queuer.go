@@ -80,7 +80,7 @@ func (q *Queuer) Route() *mux.Router {
 }
 
 func (q *Queuer) feedGet(w http.ResponseWriter, r *http.Request) {
-	q.queue("websocket", []byte("hi nsq"))
+
 }
 
 func (q *Queuer) feedPost(w http.ResponseWriter, r *http.Request) {
@@ -102,8 +102,9 @@ func (q *Queuer) feedPost(w http.ResponseWriter, r *http.Request) {
 	feedEntityID := vars["feed_entity_id"]
 	feedID := "feed." + feedSlug + "." + feedEntityID
 	if !nsq.IsValidTopicName(feedID) {
-		log.WithError(err).Errorf("invalid 'slug' or 'entity' name")
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		errMsg := "invalid 'slug' or 'entity' name"
+		log.WithError(err).Errorf(errMsg)
+		http.Error(w, errMsg, http.StatusBadRequest)
 		return
 	}
 

@@ -13,6 +13,10 @@ import (
 	"stream/internal/pkg/privlib/logger"
 )
 
+const (
+	tokenPrefix = "feed.user."
+)
+
 var (
 	log = logger.GetInstance()
 	cfg = config.GetInstance()
@@ -116,6 +120,7 @@ func verifyToken(r *http.Request) (token Token, err error) {
 		return "", errors.New("invalid GetToken value")
 	}
 
+	t = tokenPrefix + t
 	return Token(t), nil
 }
 
